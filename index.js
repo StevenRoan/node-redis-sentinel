@@ -99,6 +99,7 @@ Sentinel.prototype.createClientInternal = function(masterName, opts) {
             function refreshEndpoints() {
                 client.connectionOption.port = "";
                 client.connectionOption.host = "";
+                client.stream.removeAllListeners();
                 resolver(self.endpoints, masterName, function(_err, ip, port) {
                     if (_err) {
                         oldEmit.call(client, 'error', _err);
